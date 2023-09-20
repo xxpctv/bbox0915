@@ -89,6 +89,10 @@ public class MainActivity extends BaseVbActivity<ActivityMainBinding> {
 
     @Override
     public void onBackPressed() {
+         if (mBinding.vp.getCurrentItem() == 1) {
+            mBinding.vp.setCurrentItem(0);
+            return;
+        }
         HomeFragment homeFragment = (HomeFragment) fragments.get(0);
         List<Fragment> childFragments = homeFragment.getChildFragmentManager().getFragments();
         if (childFragments.isEmpty()) {//加载中(没有tab)
