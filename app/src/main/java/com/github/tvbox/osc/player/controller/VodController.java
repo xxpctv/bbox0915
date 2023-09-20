@@ -197,6 +197,7 @@ public class VodController extends BaseController {
         mVideoSize = findViewById(R.id.tv_videosize);
         mSubtitleView = findViewById(R.id.subtitle_view);
         mZimuBtn = findViewById(R.id.zimu_select);
+        ExpandableLayout expandableSetting = findViewById(R.id.expandable_setting);
         mAudioTrackBtn = findViewById(R.id.audio_track_select);
         mLandscapePortraitBtn = findViewById(R.id.landscape_portrait);
 
@@ -207,6 +208,9 @@ public class VodController extends BaseController {
             @Override
             public void run() {
                 hideBottom();
+             if (expandableSetting.isExpanded()){
+             expandableSetting.collapse();
+                }
             }
         };
 
@@ -313,6 +317,7 @@ public class VodController extends BaseController {
             public void onClick(View view) {
                 myHandle.removeCallbacks(myRunnable);
                 myHandle.postDelayed(myRunnable, myHandleSeconds);
+                  expandableSetting.toggle();
                 try {
                     int scaleType = mPlayerConfig.getInt("sc");
                     scaleType++;
